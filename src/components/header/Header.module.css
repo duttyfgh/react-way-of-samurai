@@ -1,0 +1,50 @@
+.header img {
+  max-width: 40px;
+  height: 40px;
+  margin-top: 8px;
+  margin-left: 20px;
+}
+
+.logoText {
+  color: aliceblue;
+  font-size: 30px;
+  top: 13px;
+  left: 60px;
+  position: absolute;
+}
+
+.header {
+  grid-area: header;
+  /*типо псевданима*/
+  background-color: #282828;
+  display: flex;
+  justify-content: space-between;
+}
+
+.vigets {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 50px;
+
+}
+
+a>i {
+  position: static;
+  margin: 10px;
+  font-size: 30px;
+  color: rgb(193, 193, 193);
+  
+}
+
+.loginBlock {
+  margin-right: 40px;
+  font-size: 20px;
+  color: rgb(185, 185, 185);
+}
+
+.loginLink {
+  text-decoration: none;
+}

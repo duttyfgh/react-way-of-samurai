@@ -1,0 +1,11 @@
+.myPosts {
+    margin: 10px;
+}
+
+.posts {
+    margin-top: 10px;
+}
+
+.myPosts i {
+    position: relative;
+}

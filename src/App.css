@@ -1,0 +1,36 @@
+* {
+  color: #cacaca;
+}
+
+body {
+  background-color: #212121;
+
+  
+}
+
+.main {
+  display: grid;
+  grid-template-areas:
+    /*говорим по какому шаблону вистроени псевданими*/
+    'header header '
+    'nav content ';
+  grid-template-rows: 60px 1fr;
+  /*говорим сколько будет строк, 1 верхная для хедера и вторая для конетнта и нава*/
+  grid-template-columns: 2fr 10fr;
+  /*говорим солько у нас будет колонок, когда ми говорим 2fr єто означает сколько фракций будет занимаеть 1 калонка, фркция єто какби равная часть*/
+  gap: 10px;
+  /*отсутп*/
+
+  background-color: #212121;
+
+  height: 100vh;
+  width: 100%;
+
+}
+
+.mainContent {
+  grid-area: content;
+  background-color: #282828;
+
+
+}

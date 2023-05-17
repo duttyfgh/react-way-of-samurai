@@ -1,0 +1,36 @@
+.item a {
+  text-decoration: none;
+  color: #cacaca;
+  font-size: 25px;
+
+
+}
+
+.item:hover {
+  color: #b0b0b0;
+}
+
+
+.item a.active {
+  color: #747474;
+
+}
+
+
+
+.nav {
+  grid-area: nav;
+  background-color: #282828;
+
+}
+
+.nav div {
+  background-color: #2e2e2e;
+  margin-top: 10px;
+  padding-left: 25px;
+}
+
+.nav div:last-child {
+  background-color: #2e2e2e;
+  margin-top: 30px;
+}

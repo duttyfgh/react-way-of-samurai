@@ -1,0 +1,155 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+
+}
+
+.dialogsItems {
+    padding: 10px;
+    font-size: 25px;
+    margin: 35px 10px 10px 20px;
+
+}
+
+.dialogsItems div {
+    margin-top: 10px;
+}
+
+.dialog a {
+    text-decoration: none;
+
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+
+    height: 75vh;
+    width: 1080px;
+    overflow-y: auto;
+
+
+    position: absolute;
+    bottom: 0;
+
+
+    font-size: 20px;
+
+    padding: 0 30px;
+    margin-right: 10px;
+    margin-bottom: 80px;
+
+    border-left: 1px solid #747474;
+
+}
+
+.messages::-webkit-scrollbar {
+    display: none;
+}
+
+.me {
+    display: inline-flex;
+    align-self: flex-end;
+    position: relative;
+
+    padding: 15px;
+    margin-left: auto;
+
+    color: #858585;
+    background-color: #1c1c1c;
+    border-radius: 30px 30px 0 30px;
+
+}
+
+.frend {
+    display: inline-flex;
+
+    margin-right: auto;
+    padding: 15px;
+    margin-top: 5px;
+
+    color: #1c1c1c;
+    background-color: #5f5f5f;
+    border-radius: 30px 30px 30px 0;
+
+}
+
+
+
+.indexMargin {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+    position: relative;
+    height: 80vh;
+
+}
+
+.message {
+    display: felx;
+    box-shadow: 3px 3px 10px #141414;
+    margin-bottom: 10px;
+
+
+}
+
+.messageBlock {
+    display: flex;
+    position: relative;
+}
+
+
+.shellInput {
+    width: 1100px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+
+    background-color: #444;
+    box-shadow: 3px 5px 10px #141414;
+
+    border-radius: 10px;
+
+
+}
+
+.userInput {
+    resize: none;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+
+
+    font-size: 17px;
+    background-color: transparent;
+
+    padding: 15px;
+
+    width: 1060px;
+    height: 50px;
+}
+
+.userInput::-webkit-scrollbar {
+    display: none;
+}
+
+i {
+    color: #858585;
+
+    position: absolute;
+    right: 0;
+    margin-right: 30px;
+
+}
+
+i:hover {
+    color: #9a9a9a;
+    cursor: pointer;
+}
+
