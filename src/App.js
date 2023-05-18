@@ -16,7 +16,6 @@ import Preloader from './common/preloader/preloader';
 import preloader from './assets/images/preloader.svg'
 import store from './redux/redux-store';
 
-// import DialogsContainer from './components/dialogs/DialogsContanier';
 const DialogsContainer = React.lazy(() => import('./components/dialogs/DialogsContanier'))
 const ProfileContainer = React.lazy(() => import('./components/profile/profileContainer'))
 const Settings = React.lazy(() => import('./components/settings/Settings'))
