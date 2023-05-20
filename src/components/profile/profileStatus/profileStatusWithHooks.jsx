@@ -23,7 +23,12 @@ const ProfileStatusWithHooks = (props) => {
 
     const onStatusChange = (event) => {
         setStatus(event.currentTarget.value);
+    }
 
+    const onMainPhotoSelected = (event) => {
+       if (event.target.files[0]) {
+        props.savePhoto(event.target.files[0])
+       }
     }
 
     return (
@@ -32,6 +37,7 @@ const ProfileStatusWithHooks = (props) => {
             <span className={classes.userName}>
                 {props.profile.fullName}
             </span>
+            <div>{props.isOwner && <input onChange={onMainPhotoSelected} type={"file"} />}</div>
 
             <div className={classes.block}>
                 <span className={classes.description}>{

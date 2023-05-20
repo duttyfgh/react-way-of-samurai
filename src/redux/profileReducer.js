@@ -5,6 +5,7 @@ const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
 const SET_USER_STATUS_MESSAGE = 'profile/SET_USER_STATUS_MESSAGE'
 const UPDATE_USER_STATUS = 'profile/UPDATE_USER_STATUS'
 const DELETE_POST = 'profile/DELETE_POST'
+const SAVE_PHOTO_SECCES = 'profile/SAVE_PHOTO_SECCES'
 
 const initialState = {
     postData: [
@@ -16,17 +17,20 @@ const initialState = {
 }
 
 export const profileReducer = (state = initialState, action) => {
-    const stateCopy = JSON.parse(JSON.stringify(state))
+    const stateCopy = {
+        ...state,
+        postData: [...state.postData]
+    };
 
     switch (action.type) {
         case ADD_POST:
             const newPost = {
                 id: 3,
                 message: action.newPost
-            }
-            stateCopy.postData.push(newPost)
-            stateCopy.newPostText = ''
-            return stateCopy
+            };
+            stateCopy.postData.push(newPost);
+            stateCopy.newPostText = '';
+            return stateCopy;
 
         case SET_USER_PROFILE:
             return { ...state, profile: action.profile }
@@ -37,16 +41,20 @@ export const profileReducer = (state = initialState, action) => {
         case DELETE_POST:
             return { ...state, postData: state.postData.filter(post => post.id !== action.postId) }
 
+        case SAVE_PHOTO_SECCES:
+            return { ...state, profile: { ...state.profile, photos: action.photos } }
+
         default: return stateCopy
 
     }
 }
 
-export const addPostEctionCreater = (newPost) => ({ type: ADD_POST, newPost })
+export const addPostEctionCreater = newPost => ({ type: ADD_POST, newPost })
 export const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile })
 export const setUserStatusMessage = statusText => ({ type: SET_USER_STATUS_MESSAGE, statusText })
 export const updateUserStatus = status => ({ type: UPDATE_USER_STATUS, newText: status })
 export const deletePost = postId => ({ type: DELETE_POST, postId })
+export const updateUserPhotoSucsses = photos => ({ type: SAVE_PHOTO_SECCES, photos })
 
 //thunks:
 export const getUserProfile = (userId) => async (dispatch) => {
@@ -63,5 +71,12 @@ export const updateStatus = (status) => async (dispatch) => {
     const response = await profileAPI.updateStatus(status)
     if (response.resultCode === 0) {
         dispatch(updateUserStatus(status))
+    }
+}
+
+export const savePhoto = (file) => async (dispatch) => {
+    const response = await profileAPI.savePhoto(file)
+    if (response.resultCode === 0) {
+        dispatch(updateUserPhotoSucsses(response.data.photos))
     }
 }
