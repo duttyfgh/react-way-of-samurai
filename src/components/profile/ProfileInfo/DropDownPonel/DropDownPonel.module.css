@@ -1,0 +1,51 @@
+.profileSettings i {
+    color: #c1c1c1;
+    font-size: 25px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.profileSettings {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.dropdownPanel {
+    width: 200px;
+    height: 100px;
+    background-color: #1e1e1e;
+    box-shadow: -2px 4px 6px black;
+
+}
+
+.settingsPen {
+    height: 45px;
+}
+
+.settingsPen:hover {
+    background-color: #1e1e1e;
+    cursor: pointer;
+
+}
+
+.changePhoto:hover {
+    cursor: pointer;
+    background-color: #191919;
+}
+
+.editProfile:hover {
+    cursor: pointer;
+    background-color: #191919;
+}
+
+.changePhoto input[type=file] {
+    display: none;
+}
+
+.changePhoto label {
+    cursor: pointer;
+    height: 50px;
+    display: block;
+}

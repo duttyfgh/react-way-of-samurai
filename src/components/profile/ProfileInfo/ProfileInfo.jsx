@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import classes from "./ProfileInfo.module.css";
-import Preloader from "../../../common/preloader/preloader";
-import preloader from "../../../assets/images/preloader.svg";
-import ProfileStatusWithHooks from "../profileStatus/profileStatusWithHooks";
+import React, { useState } from "react"
+import classes from "./ProfileInfo.module.css"
+import Preloader from "../../../common/preloader/preloader"
+import preloader from "../../../assets/images/preloader.svg"
+import ProfileStatusWithHooks from "../profileStatus/profileStatusWithHooks"
+import ProfileDataForm from "./ProfileDataForm"
+import DropDownPonel from "./DropDownPonel/DropDownPonel"
 
 const ImgLarge = (props) => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false)
 
   const openModal = () => {
     setModalVisible(true);
   };
 
-  const closeModal = () => {
-    setModalVisible(false);
-  };
-
-  const handleModalClick = (e) => {
-    e.stopPropagation();
+  const handleModalClick = (event) => {
+    event.stopPropagation();
   };
 
   const handleOverlayClick = () => {
@@ -45,7 +43,7 @@ const ImgLarge = (props) => {
                   ? props.profile.photos.large
                   : "https://www.fote.org.uk/wp-content/uploads/2017/03/profile-icon.png"
               }
-              alt="Large Profile"
+              alt="Large Profile Photo"
             />
           </div>
         </div>
@@ -55,15 +53,28 @@ const ImgLarge = (props) => {
 };
 
 const ProfileInfo = (props) => {
+  const [editMode, setEditMode] = useState(false)
+  const [localStatus, setLocalStatus] = useState(props.status)
+
   if (!props.profile) {
-    return <Preloader preloader={preloader} />;
+    return <Preloader preloader={preloader} />
+  }
+
+  const onSubmit = (formData) => {
+    console.log(formData)
+
   }
 
   return (
     <div>
       <div className={classes.userProfileHeader}>
         <ImgLarge profile={props.profile} />
-        <ProfileStatusWithHooks {...props} />
+        {editMode
+          ? <ProfileDataForm onSubmit={onSubmit}  {...props} />
+          : <ProfileStatusWithHooks  {...props}
+          />}
+          {props.isOwner && <DropDownPonel editMode={editMode} setEditMode={setEditMode} {...props}/>}
+        
       </div>
     </div>
   );

@@ -1,21 +1,27 @@
 import twitter from '../../../assets/images/twitter.svg'
 import gitHub from '../../../assets/images/gitHub.svg'
 import instargamIcon from '../../../assets/images/instagram.svg'
-import classes from './profileStatus.module.css'
-import React, { useEffect, useState } from 'react'
+import classes from '../profileStatus/profileStatus.module.css'
+import React, { useState } from 'react'
+import { createField, Input } from '../../../common/formsControls/formsControls'
+import { maxLengthCreator } from '../../../utils/validators/validators'
+import { reduxForm } from 'redux-form'
 
-const ProfileStatusWithHooks = (props) => {
+const ProfileDataForm = (props) => {
     const [status, setStatus] = useState(props.status)
 
-    useEffect(() => {
-        setStatus(props.status)
-    }, [props.status])
+    const diactivateEditMode = () => {
+        props.updateStatus(status)
+    }
+
+    const onStatusChange = (event) => {
+        setStatus(event.currentTarget.value)
+    }
 
     return (
-        <div className={classes.outher}>
-            <span className={classes.userName}>
-                {props.profile.fullName}
-            </span>
+        <form onSubmit={props.handleSubmit} className={classes.outher}>
+            {createField('text', 'userFullName', 'Enter your username', [], Input, '', props.profile.fullName)}
+
             <div className={classes.block}>
                 <span className={classes.description}>{
                     props.profile.aboutMe
@@ -23,10 +29,14 @@ const ProfileStatusWithHooks = (props) => {
                         : 'Тут должно бить описание но его нет :('
                 }</span>
                 <br />
-                <span  style={{ color: '#d8d9da' }}>
-                    Cтатус:
-                    <span>{
-                        status || 'undefined'}</span></span>
+                <button>save</button>
+                <br />
+                <input
+                    className={classes.status}
+                    value={status}
+                    onBlur={diactivateEditMode}
+                    onChange={onStatusChange} />
+
                 <br />
                 <div>{
                     props.profile.lookingForAJob
@@ -39,9 +49,14 @@ const ProfileStatusWithHooks = (props) => {
                     <a href={'#'}><img src={twitter} title={props.profile.contacts.twitter || 'Неуказано'} /></a>
                 </div>
             </div>
-        </div>
-    )
 
+
+        </form>
+    )
 }
 
-export default ProfileStatusWithHooks
+const ProfileDataFormReduxForm = reduxForm({
+    form: 'editProfile'
+})(ProfileDataForm)
+
+export default ProfileDataFormReduxForm
