@@ -3,7 +3,7 @@ import classes from "./ProfileInfo.module.css"
 import Preloader from "../../../common/preloader/preloader"
 import preloader from "../../../assets/images/preloader.svg"
 import ProfileStatusWithHooks from "../profileStatus/profileStatusWithHooks"
-import ProfileDataForm from "./ProfileDataForm"
+import ProfileDataForm from "./profileDataForm/ProfileDataForm"
 import DropDownPonel from "./DropDownPonel/DropDownPonel"
 
 const ImgLarge = (props) => {
@@ -54,15 +54,15 @@ const ImgLarge = (props) => {
 
 const ProfileInfo = (props) => {
   const [editMode, setEditMode] = useState(false)
-  const [localStatus, setLocalStatus] = useState(props.status)
 
   if (!props.profile) {
     return <Preloader preloader={preloader} />
   }
 
   const onSubmit = (formData) => {
-    console.log(formData)
-
+     props.saveProfile(formData).then(()=> {
+      setEditMode(false)
+    })
   }
 
   return (
@@ -70,11 +70,11 @@ const ProfileInfo = (props) => {
       <div className={classes.userProfileHeader}>
         <ImgLarge profile={props.profile} />
         {editMode
-          ? <ProfileDataForm onSubmit={onSubmit}  {...props} />
+          ? <ProfileDataForm initialValues={props.profile} onSubmit={onSubmit} setEditMode={setEditMode} {...props} />
           : <ProfileStatusWithHooks  {...props}
           />}
-          {props.isOwner && <DropDownPonel editMode={editMode} setEditMode={setEditMode} {...props}/>}
-        
+        {props.isOwner && <DropDownPonel editMode={editMode} setEditMode={setEditMode} {...props} />}
+
       </div>
     </div>
   );

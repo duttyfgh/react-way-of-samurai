@@ -1,0 +1,168 @@
+.profileForm textarea, input {
+    outline: none;
+    border: none;
+
+    box-shadow: 2px 2px 9px black;
+    border-bottom: 1px solid #898989;
+    background-color: #333;
+
+    margin-left: 10px;
+    font-size: 20px;
+
+}
+
+.profileForm {
+    display: grid;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.profileForm span {
+    font-size: 20px;
+    margin-left: 10px;
+
+}
+
+.profileForm i {
+    position: relative;
+    text-shadow: 0 0 5px;
+    cursor: default;
+}
+
+.block {
+    display: grid;
+}
+
+.block textarea {
+    width: 1000px;
+    height: 200%;
+    margin-top: 10px;
+    padding-left: 10px;
+
+    resize: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.status {
+    padding-left: 10px;
+    height: 30px;
+
+    color: #9e9e9e;
+}
+
+.socialNetWorks {
+    margin-top: 20px;
+    margin-left: 10px;
+
+}
+
+.socialNetWorks img {
+    filter: invert(100%);
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.socialNetWorks div {
+    display: flex;
+}
+
+.socialNetWorks div input {
+    height: 30px;
+}
+
+.userName {
+    font-size: 35px;
+    color: #d8d9da;
+
+}
+
+.userName input {
+    padding-left: 10px;
+    height: 30px;
+}
+
+.lookingForAJob {
+    font-size: 20px;
+    box-sizing: border-box;
+
+}
+
+.lookingForAJob input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: background-color 0.3s;
+    position: relative;
+
+    width: 20px;
+    height: 20px;
+    margin-top: 8px;
+
+    cursor: pointer;
+
+    border: 2px solid #333;
+    border-radius: 4px;
+}
+
+.lookingForAJob input[type="checkbox"]:checked {
+    background-color: #898989;
+}
+
+.lookingForAJob input[type="checkbox"]:checked::after {
+    content: "\2714";
+    left: 1.5px;
+    font-size: 16px;
+    color: #3b3b3b;
+    line-height: 17px;
+    z-index: 121;
+    position: absolute;
+}
+
+.futer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.futer button {
+    position: absolute;
+    left: 0;
+    margin-top: 20px;
+
+    border-radius: 4px;
+    outline: none;
+    border: none;
+
+    background-color: #1c1c1c;
+    box-shadow: 2px 2px 9px black;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    width: 140px;
+    height: 40px;
+    
+}
+
+.futer button:hover {
+    background-color: #1a1a1a;
+
+}
+
+.lookingForAJobDescription textarea {
+    height: 50px;
+    width: 420px;
+}
+
+.lookingForAJobDescription {
+    font-size: 20px;
+}

@@ -23,7 +23,7 @@
 
 
 .block textarea {
-    width: 600px;
+    width: 1000px;
     height: 200%;
     margin-top: 10px;
 
@@ -44,6 +44,12 @@
 .status {
     margin-left: 10px;
     font-size: 20px;
+    height: 30px;
+
+    background-color: #333;
+
+    border: none;
+    border-bottom: 1px solid #898989;
 }
 
 .socialNetWorks {
@@ -61,6 +67,10 @@
     cursor: pointer;
 }
 
+.socialNetWorks div {
+    display: flex;
+}
+
 .userName {
     font-size: 35px;
     margin-left: 10px;
@@ -70,4 +80,16 @@
 
 .userName span {
     color: #777
+}
+
+.lookingForAJob span {
+    margin-right: 10px;
+}
+
+.lookingForAJob i{
+    margin-left: 10px;
+}
+
+.contact {
+    margin-left: 10px;
 }

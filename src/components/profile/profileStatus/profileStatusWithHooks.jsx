@@ -6,10 +6,23 @@ import React, { useEffect, useState } from 'react'
 
 const ProfileStatusWithHooks = (props) => {
     const [status, setStatus] = useState(props.status)
+    const [editMode, setEditMode] = useState(false)
 
     useEffect(() => {
         setStatus(props.status)
     }, [props.status])
+
+    const activeteEditMode = () => {
+        setEditMode(true)
+    }
+    const diactivateEditMode = () => {
+        setEditMode(false)
+        props.updateStatus(status)
+    }
+
+    const onStatusChange = (event) => {
+        setStatus(event.currentTarget.value);
+    }
 
     return (
         <div className={classes.outher}>
@@ -23,25 +36,46 @@ const ProfileStatusWithHooks = (props) => {
                         : 'Тут должно бить описание но его нет :('
                 }</span>
                 <br />
-                <span  style={{ color: '#d8d9da' }}>
-                    Cтатус:
-                    <span>{
-                        status || 'undefined'}</span></span>
+                {editMode &&
+                    <input
+                        autoFocus
+                        className={classes.status}
+                        value={status}
+                        onBlur={diactivateEditMode}
+                        onChange={onStatusChange}
+                    />}
+                {!editMode &&
+                    <span onDoubleClick={() => { props.isOwner && activeteEditMode() }} style={{ color: '#d8d9da' }}>
+                        Status:
+                        <span title='кликни 2 раза чтоб изменить'>{
+                            status || 'undefined'}</span></span>}
                 <br />
                 <div>{
                     props.profile.lookingForAJob
-                        ? <span>Ищу роботу: <i style={{ color: '#6dd145' }} className={["fa-solid fa-check"]}></i></span>
-                        : <span>Ищу роботу: <i style={{ color: '#d14e45' }} className={["fa-solid fa-xmark"]}></i></span>
+                        ? <div className={classes.lookingForAJob}>
+                            <span style={{ color: '#d8d9da' }}>Looking for a job:
+                                <i style={{ color: '#6dd145' }} className={["fa-solid fa-check"]}></i></span>
+                            <br />
+                            <span style={{ color: '#d8d9da' }}>My profesional skils:
+                            </span>{props.profile.lookingForAJobDescription}
+                        </div>
+                        : <span>Looking for a job: <i style={{ color: '#d14e45' }} className={["fa-solid fa-xmark"]}></i></span>
                 }</div>
                 <div className={classes.socialNetWorks}>
-                    <a href={'#'}><img src={instargamIcon} title={props.profile.contacts.instagram || 'Неуказано'} /></a>
-                    <a href={'#'}><img src={gitHub} title={props.profile.contacts.github || 'Неуказано'} /></a>
-                    <a href={'#'}><img src={twitter} title={props.profile.contacts.twitter || 'Неуказано'} /></a>
+                    <span>Contacts: </span> {Object.keys(props.profile.contacts).map(key => {
+                        return <Contact contactTitle={key} key={key} contactValue={props.profile.contacts[key]} />
+                    })}
                 </div>
             </div>
         </div>
     )
 
+}
+
+const Contact = ({ contactTitle, contactValue }) => {
+    return (
+        <div className={classes.contact}><span>{contactTitle}: </span>{contactValue}</div>
+    )
 }
 
 export default ProfileStatusWithHooks

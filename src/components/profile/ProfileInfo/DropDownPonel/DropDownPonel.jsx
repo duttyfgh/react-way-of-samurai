@@ -17,10 +17,6 @@ const DropDownPonel = (props) => {
         props.setEditMode(true)
     }
 
-    const saveChanges = () => {
-        props.setEditMode(false)
-    }
-
     const onMainPhotoSelected = (event) => {
         if (event.target.files[0]) {
             props.savePhoto(event.target.files[0])
@@ -40,15 +36,9 @@ const DropDownPonel = (props) => {
                     }</div>
 
                 </div>
-                {props.editMode
-                    ? <div onClick={saveChanges } className={classes.editProfile}>
-                        <i className={["fa-solid fa-check"]}></i> Save changes
-                    </div>
-                    : <div onClick={editProfile} className={classes.editProfile}>
-                        <i className={["fa-solid fa-user"]}></i> Edit profile
-                    </div>
-                }
-
+                <div onClick={editProfile} className={classes.editProfile}>
+                    <i className={["fa-solid fa-user"]}></i> Edit profile
+                </div>
             </div>
             {isPenActive
                 ? <div style={isPenActive ? { backgroundColor: '#1e1e1e' } : null} className={classes.settingsPen} onClick={onPenClickU}>
