@@ -44,7 +44,7 @@ class ProfileContainer extends React.Component {
     }
 }
 
-function withRouter(Component) {
+const withRouter = (Component) => {
     function ComponentWithRouterProp(props) {
         const location = useLocation()
         const navigate = useNavigate()

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { connect, Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { Routes } from 'react-router';
+import { Navigate, Routes } from 'react-router';
 import { compose } from 'redux';
 import './App.css';
 import FindUsersContanier from './components/findUsers/FindUsersContainer';
@@ -21,8 +21,18 @@ const ProfileContainer = React.lazy(() => import('./components/profile/profileCo
 const Settings = React.lazy(() => import('./components/settings/Settings'))
 
 class App extends React.Component {
+  catchAllUnheldlederrors = (reason, promise) => {
+    alert('Ooops.. Some error. Plase try again later')
+    console.log(reason)
+  }
+
   componentDidMount() {
     this.props.initializeApp()
+    window.addEventListener('unhandledrejection', this.catchAllUnheldlederrors)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('unhandledrejection', this.catchAllUnheldlederrors)
+
   }
 
   render() {
@@ -36,6 +46,7 @@ class App extends React.Component {
         <div className='mainContent'>
           <Suspense fallback={<Preloader preloader={preloader} />}>
             <Routes>
+              <Route path='/' element={<Navigate to='/profile'/>} />
               <Route path='/dialogs/*' element={<DialogsContainer />} />
               <Route path='/profile/:userId?' element={<ProfileContainer />} />
               <Route path='/news' element={<News />} />
@@ -43,6 +54,7 @@ class App extends React.Component {
               <Route path='/settings' element={<Settings />} />
               <Route path='/findUsers' element={<FindUsersContanier />} />
               <Route path='/login' element={<Login />} />
+              <Route path='*' element={<div>404 PAGE NOT FOUND</div>} />
             </Routes>
           </Suspense>
         </div>

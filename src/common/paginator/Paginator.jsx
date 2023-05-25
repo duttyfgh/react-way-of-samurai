@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { useState, useEffect } from 'react';
 import classes from './Paginator.module.css';
 
-export const Paginator = ({ totalItemsCount, pageSize, currentPage, onPageChanged, key, portionSize = 10 }) => {
+export const  Paginator = ({ totalItemsCount, pageSize, currentPage, onPageChanged, key, portionSize = 10 }) => {
   let pagesCount = Math.ceil(totalItemsCount / pageSize);
 
   const pages = [];
